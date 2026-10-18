@@ -1,0 +1,21 @@
+# astro-mini service config. Why-Graph diffs this file on every PR and deploy.
+# Shape and values: we-make-devs-hack/docs/work-split.md §2. The OpenTelemetry demo (Apache-2.0) inspired the topology.
+services:
+  frontend:
+    timeouts_ms: {cart: 300, currency: 300, checkout: 2500, shipping: 1500, product-catalog: 500, recommendation: 1000}
+  checkout:
+    timeouts_ms: {cart: 300, currency: 300, payment: 800, product-catalog: 500, shipping: 1500}
+  shipping:
+    timeouts_ms: {quote: 600}
+  recommendation:
+    timeouts_ms: {product-catalog: 400}
+latency_ms:            # each service's own simulated work: [mean, sd] -> p99 ~ mean + 2.33 sd
+  payment: [330, 50]           # p99 ~ 450
+  quote: [220, 35]             # p99 ~ 300
+  product-catalog: [100, 22]   # p99 ~ 150
+  cart: [15, 4]
+  currency: [10, 3]
+  shipping: [20, 5]
+  recommendation: [30, 8]
+  checkout: [10, 3]
+  frontend: [5, 2]
