@@ -4,7 +4,7 @@ services:
   frontend:
     timeouts_ms: {cart: 300, currency: 300, checkout: 2500, shipping: 1500, product-catalog: 500, recommendation: 1000}
   checkout:
-    timeouts_ms: {cart: 300, currency: 300, payment: 800, product-catalog: 500, shipping: 1500}
+    timeouts_ms: {cart: 300, currency: 300, payment: 200, product-catalog: 500, shipping: 1500}
   shipping:
     timeouts_ms: {quote: 600}
   recommendation:
